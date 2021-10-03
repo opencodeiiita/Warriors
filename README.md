@@ -7,3 +7,12 @@
 </h1>
 
 Warriors is a Web3 MMO Game built on Polygon. Generate your warriors and fight against the world!
+
+## Local Setup
+
+1. Install Node.js and NPM
+2. `npm install -g truffle ganache-cli`
+
+You can also setup Solidity language support in your IDE for better development experience.
+
+Thats it!
