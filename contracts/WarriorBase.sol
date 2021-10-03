@@ -25,7 +25,8 @@ contract WarriorBase {
     }
 
     function _generateRandomDna(string memory _name, uint _warriorType) private view returns (uint) {
-        // TODO: generate random DNA number of length 10, using name and type as seed.
+        uint rand = uint(keccak256(abi.encodePacked(_warriorType ,_name)));
+        return rand % dnaModulus;
     }
 
     function createRandomWarrior(string memory _name, uint _warriorType) public {
