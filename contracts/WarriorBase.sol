@@ -42,6 +42,5 @@ function trainWarrior(uint warriorId) public {
                 warriors[warriorId].owner == msg.sender
         );
         warriors[warriorId].xp += 100;
-        return;
     }
 }
