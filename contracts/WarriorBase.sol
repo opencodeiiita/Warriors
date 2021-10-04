@@ -10,6 +10,7 @@ contract WarriorBase {
         address owner;
         uint warriorType;
         uint dna;
+        uint xp;
     }
 
     // TODO: Define the 4 warrior types
@@ -18,7 +19,7 @@ contract WarriorBase {
     mapping (address => uint[]) public ownerToWarriorIds;
 
     function _createWarrior(string memory _name, uint _warriorType, uint _dna) private {
-        warriors.push(Warrior(_name, msg.sender, _warriorType, _dna));
+        warriors.push(Warrior(_name, msg.sender, _warriorType, _dna,0));
         uint id = warriors.length - 1;
         ownerToWarriorIds[msg.sender].push(id);
         // TODO: add a CreateWarrior event and emit it.
@@ -34,5 +35,12 @@ contract WarriorBase {
         uint randDna = _generateRandomDna(_name, _warriorType);
         _createWarrior(_name, _warriorType, randDna);
     }
-
+function trainWarrior(uint warriorId) public {
+        require(
+            warriorId >= 0 &&
+                warriorId <= warriors.length &&
+                warriors[warriorId].owner == msg.sender
+        );
+        warriors[warriorId].xp += 100;
+    }
 }
