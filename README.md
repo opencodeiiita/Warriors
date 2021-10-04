@@ -18,26 +18,26 @@ You can also setup Solidity language support in your IDE for better development 
 
 Thats it!
 
-# Game Details
-## Warriors
+## Game Details
+
 ### There are four types of warriors:
 1. Elephants
 2. Knights
 3. Archers
 4. Swordsmen
 
-// TODO: Decide stats and abilities of each warrior type.
+`TODO: Decide stats and abilities of each warrior type.`
 
 ### Each of them can also get promoted after reaching certain amount of xp.
 
-// TODO: What happens when it gets promoted? stats increase?
+`TODO: What happens when it gets promoted? stats increase?`
 
 A warriors type can be broken into two digits (CL) which represents:
 C -> Class, L -> Level
 
 ### Promotion Chart
-(00) Battle Elephant → (01) Elite battle elephant → (02) Destroyer Elephant
-(10) Knight → (11) Cavalier → (12) Paladin
-(20) Archer → (21) Crossbowman → (22) Arbalester
-(30) Long Swordsman → (31) Twohanded Swordsman → (32) Champion
+* (00) Battle Elephant → (01) Elite battle elephant → (02) Destroyer Elephant
+* (10) Knight → (11) Cavalier → (12) Paladin
+* (20) Archer → (21) Crossbowman → (22) Arbalester
+* (30) Long Swordsman → (31) Twohanded Swordsman → (32) Champion
 
