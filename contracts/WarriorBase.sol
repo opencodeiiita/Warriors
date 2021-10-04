@@ -10,9 +10,9 @@ contract WarriorBase {
         address owner;
         uint warriorType;
         uint dna;
+        uint xp;
     }
 
-    // TODO: Define the 4 warrior types
     string[] warriorClasses = ["Elephant", "Knight", "Archer","Swordsman"];
 
     string[] elephantStates = ["Battle Elephant", "Elite Battle Elephant", "Destroyer Elephant"];
@@ -24,7 +24,7 @@ contract WarriorBase {
     mapping (address => uint[]) public ownerToWarriorIds;
 
     function _createWarrior(string memory _name, uint _warriorType, uint _dna) private {
-        warriors.push(Warrior(_name, msg.sender, _warriorType, _dna));
+        warriors.push(Warrior(_name, msg.sender, _warriorType, _dna,0));
         uint id = warriors.length - 1;
         ownerToWarriorIds[msg.sender].push(id);
         // TODO: add a CreateWarrior event and emit it.
@@ -40,14 +40,14 @@ contract WarriorBase {
         uint randDna = _generateRandomDna(_name, _warriorType);
         _createWarrior(_name, _warriorType, randDna);
     }
-    function _separateWarriorType(uint _warriorType) private view returns (uint, uint) 
-    {
+    
+    function _separateWarriorType(uint _warriorType) private view returns (uint, uint) {
         uint stateId = _warriorType % 10;
         uint classId = (_warriorType - stateId)/10;
         return (classId, stateId);
     }
-    function _returnWarriorClassAndName(uint _classId, uint _stateId) private view returns (string memory, string memory)
-    {
+    
+    function _returnWarriorClassAndName(uint _classId, uint _stateId) private view returns (string memory, string memory) {
         string memory className = warriorClasses[_classId];
         string memory warriorName;
         if (_classId == 0) {
@@ -60,6 +60,15 @@ contract WarriorBase {
             warriorName = swordsmanStates[_stateId];
         }
         return (className, warriorName);
+    }
+
+    function trainWarrior(uint warriorId) public {
+        require(
+            warriorId >= 0 &&
+            warriorId <= warriors.length &&
+            warriors[warriorId].owner == msg.sender
+        );
+        warriors[warriorId].xp += 100;
     }
 
 }
