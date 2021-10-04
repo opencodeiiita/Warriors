@@ -13,6 +13,12 @@ contract WarriorBase {
     }
 
     // TODO: Define the 4 warrior types
+    string[] warriorClasses = ["Elephant", "Knight", "Archer","Swordsman"];
+
+    string[] elephantStates = ["Battle Elephant", "Elite Battle Elephant", "Destroyer Elephant"];
+    string[] knightStates = ["Knight", "Cavalier", "Paladin"];
+    string[] archerStates =["Archer", "Crossbowman", "Arbalester"];
+    string[] swordsmanStates =["Long Swordsman", "Twohanded Swordsman", " Champion"];
 
     Warrior[] public warriors;
     mapping (address => uint[]) public ownerToWarriorIds;
@@ -33,6 +39,27 @@ contract WarriorBase {
         require(_warriorType >= 0 && _warriorType <= 3);
         uint randDna = _generateRandomDna(_name, _warriorType);
         _createWarrior(_name, _warriorType, randDna);
+    }
+    function _separateWarriorType(uint _warriorType) private view returns (uint, uint) 
+    {
+        uint stateId = _warriorType % 10;
+        uint classId = (_warriorType - stateId)/10;
+        return (classId, stateId);
+    }
+    function _returnWarriorClassAndName(uint _classId, uint _stateId) private view returns (string memory, string memory)
+    {
+        string memory className = warriorClasses[_classId];
+        string memory warriorName;
+        if (_classId == 0) {
+            warriorName = elephantStates[_stateId];
+        } else if (_classId == 1) {
+            warriorName = knightStates[_stateId];
+        } else if (_classId == 2) {
+            warriorName = archerStates[_stateId];
+        } else if (_classId == 3) {
+            warriorName = swordsmanStates[_stateId];
+        }
+        return (className, warriorName);
     }
 
 }
