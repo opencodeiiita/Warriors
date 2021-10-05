@@ -11,6 +11,7 @@ contract WarriorBase {
         uint warriorType;
         uint dna;
         uint xp;
+        uint lastTrained;
     }
 
     string[] warriorClasses = ["Elephant", "Knight", "Archer","Swordsman"];
@@ -24,7 +25,7 @@ contract WarriorBase {
     mapping (address => uint[]) public ownerToWarriorIds;
 
     function _createWarrior(string memory _name, uint _warriorType, uint _dna) private {
-        warriors.push(Warrior(_name, msg.sender, _warriorType, _dna,0));
+        warriors.push(Warrior(_name, msg.sender, _warriorType, _dna,0, 0));
         uint id = warriors.length - 1;
         ownerToWarriorIds[msg.sender].push(id);
         // TODO: add a CreateWarrior event and emit it.
@@ -61,12 +62,21 @@ contract WarriorBase {
         }
         return (className, warriorName);
     }
+    
+    function _getTimeDuration(uint _startTime, uint _endTime) private view returns (uint) {
+        uint duration = _endTime - _startTime;
+        return duration;
+    }
 
     function trainWarrior(uint warriorId) public {
         require(
             warriorId >= 0 &&
             warriorId <= warriors.length &&
             warriors[warriorId].owner == msg.sender
+        );
+        uint lastTrainedDuration = (_getTimeDuration(warriors[warriorId].lastTrained, block.timestamp))/ 1 days;
+        require(
+          lastTrainedDuration >= 1
         );
         warriors[warriorId].xp += 100;
     }
