@@ -69,12 +69,14 @@ contract WarriorBase {
     }
 
     function trainWarrior(uint warriorId) public {
-        uint lastTrainedDuration = (_getTimeDuration(warriors[warriorId].lastTrained, block.timestamp))/ 1 days;
         require(
             warriorId >= 0 &&
             warriorId <= warriors.length &&
-            warriors[warriorId].owner == msg.sender &&
-            lastTrainedDuration >= 1
+            warriors[warriorId].owner == msg.sender
+        );
+        uint lastTrainedDuration = (_getTimeDuration(warriors[warriorId].lastTrained, block.timestamp))/ 1 days;
+        require(
+          lastTrainedDuration >= 1
         );
         warriors[warriorId].xp += 100;
     }
