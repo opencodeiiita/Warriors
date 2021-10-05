@@ -23,12 +23,19 @@ contract WarriorBase {
 
     Warrior[] public warriors;
     mapping (address => uint[]) public ownerToWarriorIds;
+event NewWarrior (
+    string name ,
+    address owner ,
+    uint warriorType,
+    uint dna,
+    string warriorId);
 
     function _createWarrior(string memory _name, uint _warriorType, uint _dna) private {
         warriors.push(Warrior(_name, msg.sender, _warriorType, _dna,0, 0));
         uint id = warriors.length - 1;
         ownerToWarriorIds[msg.sender].push(id);
-        // TODO: add a CreateWarrior event and emit it.
+        // TODO: add a CreateWarrior event and emit it.\
+        emit NewWarrior(_name, msg.sender, _warriorType, _dna, _warriorId);
     }
 
     function _generateRandomDna(string memory _name, uint _warriorType) private view returns (uint) {
