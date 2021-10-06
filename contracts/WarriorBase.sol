@@ -25,22 +25,15 @@ contract WarriorBase {
     mapping (address => uint[]) public ownerToWarriorIds;
 
 
-    event WarriorTrained(address owner, uint warriorId, uint xp, uint warriorType, uint dna);
-    
-    event NewWarrior (
-    uint id,   
-    string name ,
-    address owner ,
-    uint warriorType,
-    uint dna
-    );
+    event WarriorTrained(uint id, string name, address owner, uint xp, uint warriorType, uint dna);
+    event WarriorCreated(uint id, string name, address owner, uint warriorType, uint dna);
 
     function _createWarrior(string memory _name, uint _warriorClass, uint _dna) private {
         uint initialWarriorType = _warriorClass * 10;
         warriors.push(Warrior(_name, msg.sender, initialWarriorType, _dna,0, 0));
         uint id = warriors.length - 1;
         ownerToWarriorIds[msg.sender].push(id);
-        emit NewWarrior(id,_name, msg.sender, _warriorType, _dna ) ;
+        emit WarriorCreated(id, _name, msg.sender, _warriorClass, _dna) ;
     }
     
 
@@ -55,7 +48,7 @@ contract WarriorBase {
         _createWarrior(_name, _warriorClass, randDna);
     }
     
-    function _separateWarriorType(uint _warriorType) private view returns (uint, uint) {
+    function _separateWarriorType(uint _warriorType) private pure returns (uint, uint) {
         uint stateId = _warriorType % 10;
         uint classId = (_warriorType - stateId)/10;
         return (classId, stateId);
@@ -76,7 +69,7 @@ contract WarriorBase {
         return (className, warriorName);
     }
     
-    function _getTimeDuration(uint _startTime, uint _endTime) private view returns (uint) {
+    function _getTimeDuration(uint _startTime, uint _endTime) private pure returns (uint) {
         uint duration = _endTime - _startTime;
         return duration;
     }
@@ -92,7 +85,7 @@ contract WarriorBase {
           lastTrainedDuration >= 1
         );
         warriors[warriorId].xp += 100;
-        emit WarriorTrained(msg.sender, warriorId, warriors[warriorId].xp, warriors[warriorId].warriorType, warriors[warriorId].dna);
+        emit WarriorTrained(warriorId, warriors[warriorId].name, msg.sender, warriors[warriorId].xp, warriors[warriorId].warriorType, warriors[warriorId].dna);
     }
 
 }
