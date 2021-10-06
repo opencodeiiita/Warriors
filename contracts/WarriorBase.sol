@@ -68,6 +68,7 @@ contract WarriorBase {
         return duration;
     }
 
+    event WarriorTrained( address owner, uint warriorId,  uint xp);
     function trainWarrior(uint warriorId) public {
         require(
             warriorId >= 0 &&
@@ -79,6 +80,7 @@ contract WarriorBase {
           lastTrainedDuration >= 1
         );
         warriors[warriorId].xp += 100;
+        emit WarriorTrained(msg.sender,warriorId,warriors[warriorId].xp);
     }
 
 }
