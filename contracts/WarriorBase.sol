@@ -23,16 +23,26 @@ contract WarriorBase {
 
     Warrior[] public warriors;
     mapping (address => uint[]) public ownerToWarriorIds;
-    
+
+
     event WarriorTrained(address owner, uint warriorId, uint xp, uint warriorType, uint dna);
     
+    event NewWarrior (
+    uint id,   
+    string name ,
+    address owner ,
+    uint warriorType,
+    uint dna
+    );
+
     function _createWarrior(string memory _name, uint _warriorClass, uint _dna) private {
         uint initialWarriorType = _warriorClass * 10;
         warriors.push(Warrior(_name, msg.sender, initialWarriorType, _dna,0, 0));
         uint id = warriors.length - 1;
         ownerToWarriorIds[msg.sender].push(id);
-        // TODO: add a CreateWarrior event and emit it.
+        emit NewWarrior(id,_name, msg.sender, _warriorType, _dna ) ;
     }
+    
 
     function _generateRandomDna(string memory _name, uint _warriorClass) private view returns (uint) {
         uint rand = uint(keccak256(abi.encodePacked(_warriorClass ,_name)));
