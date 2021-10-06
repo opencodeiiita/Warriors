@@ -26,22 +26,23 @@ contract WarriorBase {
     
     event WarriorTrained(address owner, uint warriorId, uint xp, uint warriorType, uint dna);
     
-    function _createWarrior(string memory _name, uint _warriorType, uint _dna) private {
-        warriors.push(Warrior(_name, msg.sender, _warriorType, _dna,0, 0));
+    function _createWarrior(string memory _name, uint _warriorClass, uint _dna) private {
+        uint initialWarriorType = _warriorClass * 10;
+        warriors.push(Warrior(_name, msg.sender, initialWarriorType, _dna,0, 0));
         uint id = warriors.length - 1;
         ownerToWarriorIds[msg.sender].push(id);
         // TODO: add a CreateWarrior event and emit it.
     }
 
-    function _generateRandomDna(string memory _name, uint _warriorType) private view returns (uint) {
-        uint rand = uint(keccak256(abi.encodePacked(_warriorType ,_name)));
+    function _generateRandomDna(string memory _name, uint _warriorClass) private view returns (uint) {
+        uint rand = uint(keccak256(abi.encodePacked(_warriorClass ,_name)));
         return rand % dnaModulus;
     }
 
-    function createRandomWarrior(string memory _name, uint _warriorType) public {
-        require(_warriorType >= 0 && _warriorType <= 3);
-        uint randDna = _generateRandomDna(_name, _warriorType);
-        _createWarrior(_name, _warriorType, randDna);
+    function createRandomWarrior(string memory _name, uint _warriorClass) public {
+        require(_warriorClass >= 0 && _warriorClass <= 3);
+        uint randDna = _generateRandomDna(_name, _warriorClass);
+        _createWarrior(_name, _warriorClass, randDna);
     }
     
     function _separateWarriorType(uint _warriorType) private view returns (uint, uint) {
