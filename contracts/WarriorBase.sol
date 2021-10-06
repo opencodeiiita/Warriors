@@ -23,7 +23,9 @@ contract WarriorBase {
 
     Warrior[] public warriors;
     mapping (address => uint[]) public ownerToWarriorIds;
-
+    
+    event WarriorTrained(address owner, uint warriorId, uint xp, uint warriorType, uint dna);
+    
     function _createWarrior(string memory _name, uint _warriorType, uint _dna) private {
         warriors.push(Warrior(_name, msg.sender, _warriorType, _dna,0, 0));
         uint id = warriors.length - 1;
@@ -68,7 +70,6 @@ contract WarriorBase {
         return duration;
     }
 
-    event WarriorTrained( address owner, uint warriorId,  uint xp, uint warriorType,uint dna);
     function trainWarrior(uint warriorId) public {
         require(
             warriorId >= 0 &&
@@ -80,7 +81,7 @@ contract WarriorBase {
           lastTrainedDuration >= 1
         );
         warriors[warriorId].xp += 100;
-        emit WarriorTrained(msg.sender,warriorId,warriors[warriorId].xp,warriors[warriorId].warriorType,warriors[warriorId].dna);
+        emit WarriorTrained(msg.sender, warriorId, warriors[warriorId].xp, warriors[warriorId].warriorType, warriors[warriorId].dna);
     }
 
 }
