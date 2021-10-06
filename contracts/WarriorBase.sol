@@ -34,8 +34,8 @@ contract WarriorBase {
         // TODO: add a CreateWarrior event and emit it.
     }
 
-    function _generateRandomDna(string memory _name, uint _warriorType) private view returns (uint) {
-        uint rand = uint(keccak256(abi.encodePacked(_warriorType ,_name)));
+    function _generateRandomDna(string memory _name, uint _warriorClass) private view returns (uint) {
+        uint rand = uint(keccak256(abi.encodePacked(_warriorClass ,_name)));
         return rand % dnaModulus;
     }
 
