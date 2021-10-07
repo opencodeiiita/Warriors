@@ -37,14 +37,90 @@ contract WarriorBase {
     }
     
 
-    function _generateRandomDna(string memory _name, uint _warriorClass) private view returns (uint) {
-        uint rand = uint(keccak256(abi.encodePacked(_warriorClass ,_name)));
-        return rand % dnaModulus;
+    uint public result=1;
+    uint public randAttack;
+    uint public randSpeed;
+    uint public  randDefence;
+    uint public randHP;
+    uint public randRateOfFire;
+    mapping(uint=>mapping(string=>uint)) charactersticsMap;
+    
+    function _generateRandomDna(string memory _name, uint _warriorClass,uint _warriorType) private returns (uint) {
+        
+        
+        //for warriorClass=0=>Warrior=="Elephant"
+        charactersticsMap[0]["attack"]=4;
+        charactersticsMap[0]["speed"]=3;
+        charactersticsMap[0]["Defence"]=3;
+        charactersticsMap[0]["HP"]=4;
+        charactersticsMap[0]["Rate of Fire"]=1;
+        
+        //for warriorClass=1=>Warrior=="Knight"
+        charactersticsMap[1]["Attack"]=3;
+        charactersticsMap[1]["Speed"]=4;
+        charactersticsMap[1]["Defence"]=4;
+        charactersticsMap[1]["HP"]	=3;
+        charactersticsMap[1]["Rate of Fire"]=2;
+        
+        //for warriorClass=2=>Warrior=="Archer"
+        charactersticsMap[2]["Attack"]=1;
+        charactersticsMap[2]["Speed"]=2;
+        charactersticsMap[2]["Defence"]=1;
+        charactersticsMap[2]["HP"]=1;
+        charactersticsMap[2]["Rate of Fire"]=4;
+        
+        //for warriorClass=3=>Warrior=="Swordsman"
+        charactersticsMap[0]["Attack"]=2;
+        charactersticsMap[0]["Speed"]=1;
+        charactersticsMap[0]["Defence"]=2;
+        charactersticsMap[0]["HP"]=2;
+        charactersticsMap[0]["Rate of Fire"]=3;
+        
+        result=0;
+        
+        //DNA indexed from 0 to 9 represents:
+        //index 0,1=>value of attack
+        //index 2,3=>value of speed
+        // index 4,5=>value of Defence
+        // index 6,7=>value of HP
+        // index 8,9=>value of rateOfFireVal
+        
+        
+        randAttack=(_warriorType-1)*6+uint(keccak256(abi.encodePacked(_warriorClass ,_name)))%6-1+(charactersticsMap[_warriorClass]["Attack"]-1)*20;
+        if(randAttack<10){
+            if(result==0){
+                result=1;
+            }
+        result=result*100;
+        }
+        
+        if(randAttack==0){
+            result=result*10;
+        }
+        result=randAttack;
+        
+        
+        randSpeed=(_warriorType-1)*6+uint(keccak256(abi.encodePacked(_warriorClass ,_name)))%6-1+(charactersticsMap[_warriorClass]["Speed"]-1)*20;
+        result=result*100+randSpeed;
+        
+        
+        randDefence=(_warriorType-1)*6+uint(keccak256(abi.encodePacked(_warriorClass ,_name)))%6-1+(charactersticsMap[_warriorClass]["Defence"]-1)*20;
+        result=result*100+randDefence;
+        
+        
+        randHP=(_warriorType-1)*6+uint(keccak256(abi.encodePacked(_warriorClass ,_name)))%6-1+(charactersticsMap[_warriorClass]["HP"]-1)*20;
+        result=result*100+randHP;
+        
+        
+        randRateOfFire=(_warriorType-1)*6+uint(keccak256(abi.encodePacked(_warriorClass ,_name)))%6-1+(charactersticsMap[_warriorClass]["Rate of Fire"]-1)*20;
+        result=result*100+randRateOfFire;
+        
+        return result;
     }
 
-    function createRandomWarrior(string memory _name, uint _warriorClass) public {
+    function createRandomWarrior(string memory _name, uint _warriorClass,uint _warriorType) public {
         require(_warriorClass >= 0 && _warriorClass <= 3);
-        uint randDna = _generateRandomDna(_name, _warriorClass);
+        uint randDna = _generateRandomDna(_name, _warriorClass,_warriorType);
         _createWarrior(_name, _warriorClass, randDna);
     }
     
