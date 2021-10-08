@@ -40,7 +40,7 @@ contract WarriorBase {
    
     mapping(uint=>mapping(string=>uint)) charactersticsMap;
     
-    function _generateRandomDna(string memory _name, uint _warriorClass,uint _warriorType) private returns (uint) {
+    function _generateRandomDna(string memory _name, uint _warriorClass) private returns (uint) {
          uint result=1;
         uint randAttack;
         uint randSpeed;
@@ -123,9 +123,9 @@ contract WarriorBase {
         return uint(keccak256(abi.encodePacked(_warriorClass ,_name)))%6-1+(characterScore-1)*20;
     }
 
-    function createRandomWarrior(string memory _name, uint _warriorClass,uint _warriorType) public {
+    function createRandomWarrior(string memory _name, uint _warriorClass) public {
         require(_warriorClass >= 0 && _warriorClass <= 3);
-        uint randDna = _generateRandomDna(_name, _warriorClass,_warriorType);
+        uint randDna = _generateRandomDna(_name, _warriorClass);
         _createWarrior(_name, _warriorClass, randDna);
     }
     
