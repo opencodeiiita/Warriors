@@ -41,7 +41,7 @@ contract WarriorBase {
     mapping(uint=>mapping(string=>uint)) charactersticsMap;
     
     function _generateRandomDna(string memory _name, uint _warriorClass,uint _warriorType) private returns (uint) {
-        uint result=1;
+         uint result=1;
         uint randAttack;
         uint randSpeed;
         uint randDefence;
@@ -86,7 +86,7 @@ contract WarriorBase {
         // index 8,9=>value of rateOfFireVal
         
         
-        randAttack=uint(keccak256(abi.encodePacked(_warriorClass ,_name)))%6-1+(charactersticsMap[_warriorClass]["Attack"]-1)*20;
+        randAttack=generateRandom(_warriorClass,_name,charactersticsMap[_warriorClass]["Attack"]);
         if(randAttack<10){
             if(result==0){
                 result=1;
@@ -100,22 +100,27 @@ contract WarriorBase {
         result=randAttack;
         
         
-        randSpeed=uint(keccak256(abi.encodePacked(_warriorClass ,_name)))%6-1+(charactersticsMap[_warriorClass]["Speed"]-1)*20;
+        randSpeed=generateRandom(_warriorClass,_name,charactersticsMap[_warriorClass]["Speed"]);
         result=result*100+randSpeed;
         
         
-        randDefence=uint(keccak256(abi.encodePacked(_warriorClass ,_name)))%6-1+(charactersticsMap[_warriorClass]["Defence"]-1)*20;
+        randDefence=generateRandom(_warriorClass,_name,charactersticsMap[_warriorClass]["Defence"]);
         result=result*100+randDefence;
         
         
-        randHP=uint(keccak256(abi.encodePacked(_warriorClass ,_name)))%6-1+(charactersticsMap[_warriorClass]["HP"]-1)*20;
+        randHP=generateRandom(_warriorClass,_name,charactersticsMap[_warriorClass]["HP"]);
         result=result*100+randHP;
         
         
-        randRateOfFire=uint(keccak256(abi.encodePacked(_warriorClass ,_name)))%6-1+(charactersticsMap[_warriorClass]["Rate of Fire"]-1)*20;
+        randRateOfFire=generateRandom(_warriorClass,_name,charactersticsMap[_warriorClass]["Rate of Fire"]);
         result=result*100+randRateOfFire;
         
         return result;
+    }
+    
+    
+    function generateRandom(uint  _warriorClass,string memory _name,uint characterScore) private pure returns(uint){
+        return uint(keccak256(abi.encodePacked(_warriorClass ,_name)))%6-1+(characterScore-1)*20;
     }
 
     function createRandomWarrior(string memory _name, uint _warriorClass,uint _warriorType) public {
