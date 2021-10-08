@@ -37,20 +37,20 @@ contract WarriorBase {
     }
     
 
-    uint public result=1;
-    uint public randAttack;
-    uint public randSpeed;
-    uint public  randDefence;
-    uint public randHP;
-    uint public randRateOfFire;
+   
     mapping(uint=>mapping(string=>uint)) charactersticsMap;
     
     function _generateRandomDna(string memory _name, uint _warriorClass,uint _warriorType) private returns (uint) {
+        uint result=1;
+        uint randAttack;
+        uint randSpeed;
+        uint randDefence;
+        uint randHP;
+        uint randRateOfFire;
         
-        
-        //for warriorClass=0=>Warrior=="Elephant"
-        charactersticsMap[0]["attack"]=4;
-        charactersticsMap[0]["speed"]=3;
+       //for warriorClass=0=>Warrior=="Elephant"
+        charactersticsMap[0]["Attack"]=4;
+        charactersticsMap[0]["Speed"]=3;
         charactersticsMap[0]["Defence"]=3;
         charactersticsMap[0]["HP"]=4;
         charactersticsMap[0]["Rate of Fire"]=1;
@@ -70,11 +70,11 @@ contract WarriorBase {
         charactersticsMap[2]["Rate of Fire"]=4;
         
         //for warriorClass=3=>Warrior=="Swordsman"
-        charactersticsMap[0]["Attack"]=2;
-        charactersticsMap[0]["Speed"]=1;
-        charactersticsMap[0]["Defence"]=2;
-        charactersticsMap[0]["HP"]=2;
-        charactersticsMap[0]["Rate of Fire"]=3;
+        charactersticsMap[3]["Attack"]=2;
+        charactersticsMap[3]["Speed"]=1;
+        charactersticsMap[3]["Defence"]=2;
+        charactersticsMap[3]["HP"]=2;
+        charactersticsMap[3]["Rate of Fire"]=3;
         
         result=0;
         
@@ -86,7 +86,7 @@ contract WarriorBase {
         // index 8,9=>value of rateOfFireVal
         
         
-        randAttack=(_warriorType-1)*6+uint(keccak256(abi.encodePacked(_warriorClass ,_name)))%6-1+(charactersticsMap[_warriorClass]["Attack"]-1)*20;
+        randAttack=uint(keccak256(abi.encodePacked(_warriorClass ,_name)))%6-1+(charactersticsMap[_warriorClass]["Attack"]-1)*20;
         if(randAttack<10){
             if(result==0){
                 result=1;
@@ -100,19 +100,19 @@ contract WarriorBase {
         result=randAttack;
         
         
-        randSpeed=(_warriorType-1)*6+uint(keccak256(abi.encodePacked(_warriorClass ,_name)))%6-1+(charactersticsMap[_warriorClass]["Speed"]-1)*20;
+        randSpeed=uint(keccak256(abi.encodePacked(_warriorClass ,_name)))%6-1+(charactersticsMap[_warriorClass]["Speed"]-1)*20;
         result=result*100+randSpeed;
         
         
-        randDefence=(_warriorType-1)*6+uint(keccak256(abi.encodePacked(_warriorClass ,_name)))%6-1+(charactersticsMap[_warriorClass]["Defence"]-1)*20;
+        randDefence=uint(keccak256(abi.encodePacked(_warriorClass ,_name)))%6-1+(charactersticsMap[_warriorClass]["Defence"]-1)*20;
         result=result*100+randDefence;
         
         
-        randHP=(_warriorType-1)*6+uint(keccak256(abi.encodePacked(_warriorClass ,_name)))%6-1+(charactersticsMap[_warriorClass]["HP"]-1)*20;
+        randHP=uint(keccak256(abi.encodePacked(_warriorClass ,_name)))%6-1+(charactersticsMap[_warriorClass]["HP"]-1)*20;
         result=result*100+randHP;
         
         
-        randRateOfFire=(_warriorType-1)*6+uint(keccak256(abi.encodePacked(_warriorClass ,_name)))%6-1+(charactersticsMap[_warriorClass]["Rate of Fire"]-1)*20;
+        randRateOfFire=uint(keccak256(abi.encodePacked(_warriorClass ,_name)))%6-1+(charactersticsMap[_warriorClass]["Rate of Fire"]-1)*20;
         result=result*100+randRateOfFire;
         
         return result;
