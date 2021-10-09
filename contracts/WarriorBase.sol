@@ -17,7 +17,36 @@ contract WarriorBase {
     struct Item {
         string name;
     }
-    
+
+    constructor() public {
+      //for warriorClass=0=>Warrior=="Elephant"
+       charactersticsMap[0]["Attack"]=4;
+       charactersticsMap[0]["Speed"]=3;
+       charactersticsMap[0]["Defence"]=3;
+       charactersticsMap[0]["HP"]=4;
+       charactersticsMap[0]["Rate of Fire"]=1;
+       
+       //for warriorClass=1=>Warrior=="Knight"
+       charactersticsMap[1]["Attack"]=3;
+       charactersticsMap[1]["Speed"]=4;
+       charactersticsMap[1]["Defence"]=4;
+       charactersticsMap[1]["HP"]	=3;
+       charactersticsMap[1]["Rate of Fire"]=2;
+       
+       //for warriorClass=2=>Warrior=="Archer"
+       charactersticsMap[2]["Attack"]=1;
+       charactersticsMap[2]["Speed"]=2;
+       charactersticsMap[2]["Defence"]=1;
+       charactersticsMap[2]["HP"]=1;
+       charactersticsMap[2]["Rate of Fire"]=4;
+       
+       //for warriorClass=3=>Warrior=="Swordsman"
+       charactersticsMap[3]["Attack"]=2;
+       charactersticsMap[3]["Speed"]=1;
+       charactersticsMap[3]["Defence"]=2;
+       charactersticsMap[3]["HP"]=2;
+       charactersticsMap[3]["Rate of Fire"]=3;
+    }
     string[] warriorClasses = ["Elephant", "Knight", "Archer","Swordsman"];
 
     string[] elephantStates = ["Battle Elephant", "Elite Battle Elephant", "Destroyer Elephant"];
@@ -45,41 +74,13 @@ contract WarriorBase {
    
     mapping(uint=>mapping(string=>uint)) charactersticsMap;
     
-    function _generateRandomDna(string memory _name, uint _warriorClass) private returns (uint) {
-         uint result=1;
+    function _generateRandomDna(string memory _name, uint _warriorClass) private view returns (uint) {
+        uint result=1;
         uint randAttack;
         uint randSpeed;
         uint randDefence;
         uint randHP;
         uint randRateOfFire;
-        
-       //for warriorClass=0=>Warrior=="Elephant"
-        charactersticsMap[0]["Attack"]=4;
-        charactersticsMap[0]["Speed"]=3;
-        charactersticsMap[0]["Defence"]=3;
-        charactersticsMap[0]["HP"]=4;
-        charactersticsMap[0]["Rate of Fire"]=1;
-        
-        //for warriorClass=1=>Warrior=="Knight"
-        charactersticsMap[1]["Attack"]=3;
-        charactersticsMap[1]["Speed"]=4;
-        charactersticsMap[1]["Defence"]=4;
-        charactersticsMap[1]["HP"]	=3;
-        charactersticsMap[1]["Rate of Fire"]=2;
-        
-        //for warriorClass=2=>Warrior=="Archer"
-        charactersticsMap[2]["Attack"]=1;
-        charactersticsMap[2]["Speed"]=2;
-        charactersticsMap[2]["Defence"]=1;
-        charactersticsMap[2]["HP"]=1;
-        charactersticsMap[2]["Rate of Fire"]=4;
-        
-        //for warriorClass=3=>Warrior=="Swordsman"
-        charactersticsMap[3]["Attack"]=2;
-        charactersticsMap[3]["Speed"]=1;
-        charactersticsMap[3]["Defence"]=2;
-        charactersticsMap[3]["HP"]=2;
-        charactersticsMap[3]["Rate of Fire"]=3;
         
         result=0;
         
@@ -89,8 +90,6 @@ contract WarriorBase {
         // index 4,5=>value of Defence
         // index 6,7=>value of HP
         // index 8,9=>value of rateOfFireVal
-        
-        
         randAttack=generateRandom(_warriorClass,_name,charactersticsMap[_warriorClass]["Attack"]);
         if(randAttack<10){
             if(result==0){
