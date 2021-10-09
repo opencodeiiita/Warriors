@@ -30,7 +30,7 @@ contract WarriorBase {
     mapping (address => Item[]) public ownerInventory;
 
 
-    event WarriorTrained(uint id, string name, address owner, uint xp, uint warriorType, uint dna);
+    event WarriorTrained(uint id, string name, address owner, uint xp, uint warriorType, uint dna, uint lastTrained);
     event WarriorCreated(uint id, string name, address owner, uint warriorType, uint dna);
 
     function _createWarrior(string memory _name, uint _warriorClass, uint _dna) private {
@@ -171,7 +171,8 @@ contract WarriorBase {
           lastTrainedDuration >= 1
         );
         warriors[warriorId].xp += 100;
-        emit WarriorTrained(warriorId, warriors[warriorId].name, msg.sender, warriors[warriorId].xp, warriors[warriorId].warriorType, warriors[warriorId].dna);
+        warriors[warriorId].lastTrained = block.timestamp;
+        emit WarriorTrained(warriorId, warriors[warriorId].name, msg.sender, warriors[warriorId].xp, warriors[warriorId].warriorType, warriors[warriorId].dna, warriors[warriorId].lastTrained);
     }
 
 }
