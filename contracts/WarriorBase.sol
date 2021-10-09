@@ -16,8 +16,8 @@ contract WarriorBase {
 
     struct Item {
         string name;
-        address owner;
     }
+    
     string[] warriorClasses = ["Elephant", "Knight", "Archer","Swordsman"];
 
     string[] elephantStates = ["Battle Elephant", "Elite Battle Elephant", "Destroyer Elephant"];
@@ -27,8 +27,7 @@ contract WarriorBase {
 
     Warrior[] public warriors;
     mapping (address => uint[]) public ownerToWarriorIds;
-    Item[] public inventory;
-    mapping (address => uint[]) public ownerToItemIds;
+    mapping (address => Item[]) public ownerInventory;
 
 
     event WarriorTrained(uint id, string name, address owner, uint xp, uint warriorType, uint dna);
