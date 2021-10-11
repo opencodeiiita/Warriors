@@ -172,6 +172,20 @@ contract WarriorBase {
         warriors[warriorId].xp += 100;
         warriors[warriorId].lastTrained = block.timestamp;
         emit WarriorTrained(warriorId, warriors[warriorId].name, msg.sender, warriors[warriorId].xp, warriors[warriorId].warriorType, warriors[warriorId].dna, warriors[warriorId].lastTrained);
+        if(warriors[warriorId].xp == 1000)
+        {
+            _updateWarriorType(warriorId);
+        }
+        else if(warriors[warriorId].xp == 3000)
+        {
+            _updateWarriorType(warriorId);
+        }
+    }
+    function _updateWarriorType(uint warriorId) private {
+
+        warriors[warriorId].warriorType++;
+
     }
 
-}
+    }
+      
