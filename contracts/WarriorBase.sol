@@ -16,6 +16,8 @@ contract WarriorBase {
 
     struct Item {
         string name;
+        uint itemType;
+        uint itemLevel;
     }
 
     constructor() public {
