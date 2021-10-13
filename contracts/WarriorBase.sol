@@ -48,6 +48,13 @@ contract WarriorBase {
        charactersticsMap[3]["Defence"]=2;
        charactersticsMap[3]["HP"]=2;
        charactersticsMap[3]["Rate of Fire"]=3;
+
+       //itemsMap 
+       itemsMap[0] = "Strength Potion";
+       itemsMap[1] = "Haste Potion";
+       itemsMap[2] = "Resistance Potion";
+       itemsMap[3] = "Fitness Potion";
+       itemsMap[4] = "Rapid Fire Potion";
     }
     string[] warriorClasses = ["Elephant", "Knight", "Archer","Swordsman"];
 
@@ -75,6 +82,8 @@ contract WarriorBase {
 
    
     mapping(uint=>mapping(string=>uint)) charactersticsMap;
+
+    mapping(uint=>string) itemsMap; //added  
     
     function _generateRandomDna(string memory _name, uint _warriorClass) private view returns (uint) {
         uint result=1;
