@@ -19,7 +19,10 @@ contract WarriorBase {
         uint itemType;
         uint itemLevel;
     }
-
+    
+    mapping(uint=>mapping(string=>uint)) charactersticsMap;
+    mapping(uint=>string) itemsMap;
+    
     constructor() public {
       //for warriorClass=0=>Warrior=="Elephant"
        charactersticsMap[0]["Attack"]=4;
@@ -78,12 +81,6 @@ contract WarriorBase {
         ownerToWarriorIds[msg.sender].push(id);
         emit WarriorCreated(id, _name, msg.sender, _warriorClass, _dna) ;
     }
-    
-
-   
-    mapping(uint=>mapping(string=>uint)) charactersticsMap;
-
-    mapping(uint=>string) itemsMap; //added  
     
     function _generateRandomDna(string memory _name, uint _warriorClass) private view returns (uint) {
         uint result=1;
