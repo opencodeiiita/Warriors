@@ -72,7 +72,7 @@ contract WarriorBase {
         emit WarriorCreated(id, _name, msg.sender, _warriorClass, _dna) ;
     }
     
-
+    
    
     mapping(uint=>mapping(string=>uint)) charactersticsMap;
     
@@ -180,6 +180,12 @@ contract WarriorBase {
     }
     function _levelUpWarrior(uint warriorId) private {
         warriors[warriorId].warriorType++;
+    }
+
+    function getDailyItem() public view{
+        uint random = uint(keccak256(abi.encodePacked(block.timestamp,block.difficulty,msg.sender)))%5;
+        Item memory item = Item('Sachin',random,1);
+        ownerInventory[msg.sender].push(item);
     }
 
 }
