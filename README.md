@@ -26,11 +26,59 @@ Thats it!
 3. Archers
 4. Swordsmen
 
-`TODO: Decide stats and abilities of each warrior type.`
+
+### Base Warrior Stats:
+
+<table role="table">
+<thead>
+<tr>
+<th></th>
+<th>Attack</th>
+<th>Speed</th>
+<th>Defence</th>
+<th>HP</th>
+<th>Rate of Fire</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Elephants</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Knights</td>
+<td>3</td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Archers</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Swordsman</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
 
 ### Each of them can also get promoted after reaching certain amount of xp.
 
-`TODO: What happens when it gets promoted? stats increase?`
+`TODO: Stats Increase`
 
 A warriors type can be broken into two digits (CL) which represents:
 C -> Class, L -> Level
