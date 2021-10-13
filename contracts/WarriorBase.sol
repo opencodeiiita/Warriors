@@ -182,10 +182,11 @@ contract WarriorBase {
         warriors[warriorId].warriorType++;
     }
 
-    function getDailyItem() public view{
+   function getDailyItem() public {
         uint random = uint(keccak256(abi.encodePacked(block.timestamp,block.difficulty,msg.sender)))%5;
         Item memory item = Item('Sachin',random,1);
         ownerInventory[msg.sender].push(item);
+    }
     }
 
 }
