@@ -26,18 +26,6 @@ Thats it!
 3. Archers
 4. Swordsmen
 
-### Each of them can also get promoted after reaching certain amount of xp.
-
-`TODO: Stats Increase`
-
-A warriors type can be broken into two digits (CL) which represents:
-C -> Class, L -> Level
-
-### Promotion Chart
-* (00) Battle Elephant → (01) Elite battle elephant → (02) Destroyer Elephant
-* (10) Knight → (11) Cavalier → (12) Paladin
-* (20) Archer → (21) Crossbowman → (22) Arbalester
-* (30) Long Swordsman → (31) Twohanded Swordsman → (32) Champion
 
 ### Base Warrior Stats:
 
@@ -54,7 +42,7 @@ C -> Class, L -> Level
 </thead>
 <tbody>
 <tr>
-<td>Elephant</td>
+<td>Elephants</td>
 <td>4</td>
 <td>3</td>
 <td>3</td>
@@ -87,3 +75,17 @@ C -> Class, L -> Level
 </tr>
 </tbody>
 </table>
+
+### Each of them can also get promoted after reaching certain amount of xp.
+
+`TODO: Stats Increase`
+
+A warriors type can be broken into two digits (CL) which represents:
+C -> Class, L -> Level
+
+### Promotion Chart
+* (00) Battle Elephant → (01) Elite battle elephant → (02) Destroyer Elephant
+* (10) Knight → (11) Cavalier → (12) Paladin
+* (20) Archer → (21) Crossbowman → (22) Arbalester
+* (30) Long Swordsman → (31) Twohanded Swordsman → (32) Champion
+
