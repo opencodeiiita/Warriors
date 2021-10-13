@@ -85,7 +85,7 @@ contract WarriorBase {
 
     
    
-    mapping(uint=>mapping(string=>uint)) charactersticsMap;
+    
     
 
 
@@ -200,7 +200,7 @@ contract WarriorBase {
         Item memory item = Item('Sachin',random,1);
         ownerInventory[msg.sender].push(item);
     }
-    }
+    
 
 }
      
