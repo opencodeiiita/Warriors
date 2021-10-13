@@ -41,3 +41,53 @@ C -> Class, L -> Level
 * (20) Archer → (21) Crossbowman → (22) Arbalester
 * (30) Long Swordsman → (31) Twohanded Swordsman → (32) Champion
 
+### Warrior Stats will be displayed in following manner:
+
+5 stats Displayed are: Speed, Defence, Attack, HP, Rate of Fire
+
+<table role="table">
+<thead>
+<tr>
+<th></th>
+<th>Attack</th>
+<th>Speed</th>
+<th>Defence</th>
+<th>HP</th>
+<th>Rate of Fire</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Elephant</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Knights</td>
+<td>3</td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Archers</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Swordsman</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
