@@ -81,14 +81,7 @@ contract WarriorBase {
         ownerToWarriorIds[msg.sender].push(id);
         emit WarriorCreated(id, _name, msg.sender, _warriorClass, _dna) ;
     }
-    
-
-    
    
-    
-    
-
-
     function _generateRandomDna(string memory _name, uint _warriorClass) private view returns (uint) {
         uint result=1;
         uint randAttack;
@@ -200,7 +193,5 @@ contract WarriorBase {
         Item memory item = Item('Sachin',random,1);
         ownerInventory[msg.sender].push(item);
     }
-    
-
 }
      
