@@ -20,6 +20,10 @@ contract WarriorBase {
         uint itemLevel;
     }
     
+    struct Player {
+      uint lastItemReceivedTime;
+    }
+    
     mapping(uint=>mapping(string=>uint)) charactersticsMap;
     mapping(uint=>string) itemsMap;
     
@@ -69,6 +73,7 @@ contract WarriorBase {
     Warrior[] public warriors;
     mapping (address => uint[]) public ownerToWarriorIds;
     mapping (address => Item[]) public ownerInventory;
+    mapping (address => Player) public playerDetails;
 
 
     event WarriorTrained(uint id, string name, address owner, uint xp, uint warriorType, uint dna, uint lastTrained);
@@ -79,7 +84,7 @@ contract WarriorBase {
         warriors.push(Warrior(_name, msg.sender, initialWarriorType, _dna,0, 0));
         uint id = warriors.length - 1;
         ownerToWarriorIds[msg.sender].push(id);
-        emit WarriorCreated(id, _name, msg.sender, _warriorClass, _dna) ;
+        emit WarriorCreated(id, _name, msg.sender, _warriorClass, _dna);
     }
    
     function _generateRandomDna(string memory _name, uint _warriorClass) private view returns (uint) {
@@ -189,9 +194,13 @@ contract WarriorBase {
     }
 
    function getDailyItem() public {
+        uint lastItemReceivedDuration = (_getTimeDuration(playerDetails[msg.sender].lastItemReceivedTime, block.timestamp))/ 1 days;
+        require(
+          lastItemReceivedDuration >= 1
+        );
         uint random = uint(keccak256(abi.encodePacked(block.timestamp,block.difficulty,msg.sender)))%5;
+        playerDetails[msg.sender].lastItemReceivedTime= block.timestamp;
         Item memory item = Item('Sachin',random,1);
         ownerInventory[msg.sender].push(item);
     }
 }
-     
