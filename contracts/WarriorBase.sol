@@ -78,6 +78,7 @@ contract WarriorBase {
 
     event WarriorTrained(uint id, string name, address owner, uint xp, uint warriorType, uint dna, uint lastTrained);
     event WarriorCreated(uint id, string name, address owner, uint warriorType, uint dna);
+    event ItemReceived(string itemName, uint itemId, uint itemLevel, address ownerAddress);
 
     function _createWarrior(string memory _name, uint _warriorClass, uint _dna) private {
         uint initialWarriorType = _warriorClass * 10;
@@ -202,5 +203,6 @@ contract WarriorBase {
         playerDetails[msg.sender].lastItemReceivedTime= block.timestamp;
         Item memory item = Item('Sachin',random,1);
         ownerInventory[msg.sender].push(item);
+        emit ItemReceived('Sachin', random, 1, msg.sender);
     }
 }
