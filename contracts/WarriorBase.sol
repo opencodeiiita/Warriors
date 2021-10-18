@@ -200,7 +200,6 @@ contract WarriorBase {
         );
         uint random = uint(keccak256(abi.encodePacked(block.timestamp,block.difficulty,msg.sender)))%5;
         playerDetails[msg.sender].lastItemReceivedTime= block.timestamp;
-        Item memory item = Item('Sachin',random,1);
-        ownerInventory[msg.sender].push(item);
+        ownerInventory[msg.sender].push(Item(itemsMap[random],random,1));
     }
 }
