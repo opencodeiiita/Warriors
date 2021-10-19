@@ -204,5 +204,6 @@ contract WarriorBase {
         Item memory item = Item('Sachin',random,1);
         ownerInventory[msg.sender].push(item);
         emit ItemReceived('Sachin', random, 1, msg.sender);
+        ownerInventory[msg.sender].push(Item(itemsMap[random],random,1));
     }
 }
