@@ -78,6 +78,7 @@ contract WarriorBase {
 
     event WarriorTrained(uint id, string name, address owner, uint xp, uint warriorType, uint dna, uint lastTrained);
     event WarriorCreated(uint id, string name, address owner, uint warriorType, uint dna);
+    event ItemReceived(string itemName, uint itemId, uint itemLevel, address ownerAddress);
 
     function _createWarrior(string memory _name, uint _warriorClass, uint _dna) private {
         uint initialWarriorType = _warriorClass * 10;
@@ -200,6 +201,7 @@ contract WarriorBase {
         );
         uint random = uint(keccak256(abi.encodePacked(block.timestamp,block.difficulty,msg.sender)))%5;
         playerDetails[msg.sender].lastItemReceivedTime= block.timestamp;
+        emit ItemReceived(itemsMap[random], random, 1, msg.sender);
         ownerInventory[msg.sender].push(Item(itemsMap[random],random,1));
     }
 }
