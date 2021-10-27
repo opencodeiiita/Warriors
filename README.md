@@ -29,52 +29,12 @@ Thats it!
 
 ### Base Warrior Stats:
 
-<table role="table">
-<thead>
-<tr>
-<th></th>
-<th>Attack</th>
-<th>Speed</th>
-<th>Defence</th>
-<th>HP</th>
-<th>Rate of Fire</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Elephants</td>
-<td>4</td>
-<td>3</td>
-<td>3</td>
-<td>4</td>
-<td>1</td>
-</tr>
-<tr>
-<td>Knights</td>
-<td>3</td>
-<td>4</td>
-<td>4</td>
-<td>3</td>
-<td>2</td>
-</tr>
-<tr>
-<td>Archers</td>
-<td>1</td>
-<td>2</td>
-<td>1</td>
-<td>1</td>
-<td>4</td>
-</tr>
-<tr>
-<td>Swordsman</td>
-<td>2</td>
-<td>1</td>
-<td>2</td>
-<td>2</td>
-<td>3</td>
-</tr>
-</tbody>
-</table>
+|         | Attack | Speed | Defense | HP | Rate Of Fire |
+|---------|--------|-------|---------|----|--------------|
+|Elephant |   4    |   3   |    3    | 4  |      1       |
+|Knights  |   3    |   4   |    4    | 3  |      2       |
+|Archers  |   1    |   2   |    1    | 1  |      4       |
+|Swordsmen|   2    |   1   |    2    | 2  |      3       |
 
 ### Each of them can also get promoted after reaching certain amount of xp.
 
