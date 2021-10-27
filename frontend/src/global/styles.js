@@ -16,7 +16,7 @@ export const Colors = {
   Purple: {
     500: '#8b5cf6',
     200: '#a5b4fc',
-    100: '#e1bee7'
+    100: '#e5d4ff'
   },
   Red: { 400: '#F87171' },
 }
@@ -35,7 +35,7 @@ export const Sizes = {
 }
 
 export const Gradients = {
-  bodyBackground: `linear-gradient(180deg, ${Colors.Yellow[100]}, ${Colors.White})`,
+  bodyBackground: `linear-gradient(180deg, ${Colors.Purple[100]}, ${Colors.White})`,
 }
 
 export const Transitions = {

@@ -10,9 +10,9 @@ export function TopBar() {
       <HeaderContainer>
         <HeaderNav>
           <ToMain href="/">
-            <span>useDapp</span>
+            <span>Warriors</span>
             <ToMainBottom>
-              Ethereum <Handshaking>🤝</Handshaking> React
+              A Web3 MMO Game
             </ToMainBottom>
           </ToMain>
           <HeaderNavLinks>
@@ -58,9 +58,9 @@ const ToMain = styled.a`
   display: flex;
   flex-direction: column;
   width: fit-content;
-  font-size: 18px;
+  font-size: 24px;
   line-height: 24px;
-  font-weight: 700;
+  font-weight: 900;
   transition: ${Transitions.all};
 
   &:hover {
@@ -74,13 +74,9 @@ const ToMainBottom = styled.span`
   grid-column-gap: 4px;
   align-items: center;
   width: fit-content;
-  font-size: 10px;
+  font-size: 12px;
   line-height: 14px;
   font-weight: 500;
-`
-
-const Handshaking = styled.span`
-  letter-spacing: -0.3em;
 `
 
 const HeaderNavLinks = styled.div`
