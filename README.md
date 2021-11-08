@@ -8,6 +8,10 @@
 
 Warriors is a Web3 MMO Game built on Polygon. Generate your warriors and fight against the world!
 
+Deployed Contract on Polygon(Matic): [0x696cc396da776d8c33260f584b0b7f2a9c0dbce8](https://polygonscan.com/address/0x696cc396da776d8c33260f584b0b7f2a9c0dbce8)
+
+You can go to the [Write Contract Tab](https://polygonscan.com/address/0x696cc396da776d8c33260f584b0b7f2a9c0dbce8#writeContract), connect your Wallet, and play directly from the smart contract!
+
 ## Local Setup
 
 1. Install Node.js and NPM
